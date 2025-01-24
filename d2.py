@@ -49,40 +49,51 @@ fullmoons = [
 	("Cold Moon, Super Full Moon", (12, 4))#december
 ]
 
+eclipses = [
+	("Total Lunar Eclipse in Virgo", (3, 14)),#march 14, embrace analytical abilities
+	("Partial Solar Eclipse in Aries", (3, 29)),#march 29, carnal impulses
+	("Total Lunar Eclipse in Pisces", (9, 7)),#september 7, chase our fantasies and romance
+	("Partial Solar Eclipse in Virgo", (9, 21)),#september 21, let go of fears in practical ways
+]
+
 
 # Calculate the event dates for the current year
 year = now.year
 sabbat_calculate = [(name, datetime.datetime(year, month, day)) for name, (month, day) in sabbats]
-fullmoon_calculate = [(name, datetime.datetime(year,month,day)) for name, (month, day) in fullmoons]
-
+fullmoon_calculate = [(name, datetime.datetime(year, month, day)) for name, (month, day) in fullmoons]
+eclipse_calculate = [(name, datetime.datetime(year, month, day)) for name, (month, day) in eclipses]
 #formatted_date_time = now.strftime('%A, %B %d, %Y %I:%M:%S %p')
 
 # Find the next event
 for event_name, event_date in sabbat_calculate:
-    if event_date > now:
+	if event_date > now:
         # Calculate the difference in days
-        next_event = event_date - now
-        days_left = next_event.days
+	        next_event = event_date - now
+	        days_left = next_event.days
         # Format the event date and time
-        formatted_event_date = event_date.strftime('%A, %B %d, %Y')
-        print(f'\n\t\t\t{event_name}: {days_left} days, {formatted_event_date}')
-#        break
-space()
+	        formatted_event_date = event_date.strftime('%A, %B %d, %Y')
+	        print(f'\t\t\t{event_name}: {days_left} days, {formatted_event_date}')
+	        break
+
 # Find full moon
 for event_name, event_date in fullmoon_calculate:
 	if event_date > now:
 		next_event = event_date - now
 		days_left = next_event.days 
-		formatted_event_date = event_date.strftime('%A, %B %d, Y')
+		formatted_event_date = event_date.strftime('%A, %B %d, %Y')
 		print(f'\n\t\t\t{event_name}: {days_left} days, {formatted_event_date}')
+		break         
+		
+# Find next eclipse
+for event_name, event_date in eclipse_calculate:
+	if event_date > now:
+		next_event = event_date - now
+		days_left = next_event.days 
+		formatted_event_date = event_date.strftime('%A, %B %d, %Y')
+		print(f'\n\t\t\t{event_name}: {days_left} days, {formatted_event_date}')
+		break         
         
-        
-'''
-#Eclipses
-#March 14: Total lunar eclipse in Virgo (embrace our analytical abilities)
-#March 29: Partial solar eclipse in Aries (carnal impulses)
-#September 7: Total lunar eclipse in Pisces (chase our fantasies and romance)
-#September 21: Partial solar eclipse in Virgo (let go of our fears in practical ways
-'''
+
+
 
 space()
